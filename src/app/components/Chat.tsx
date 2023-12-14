@@ -12,7 +12,7 @@ export default function Chat(session: any) {
 
   async function sendMessage() {
     try {
-      if (!text || !session.session?.name || !session.session?.id) {
+      if (!text || !session.session?.id) {
         return;
       }
       const messa: PayLoadMessage = {
@@ -20,16 +20,14 @@ export default function Chat(session: any) {
         message: text,
         room_id: actualRoom[0].id,
         user_origem: {
-          name: session.session?.name,
+          name: session.session?.user.name,
         },
         user_origem_id: session.session?.id,
         date: new Date(),
       };
 
       const { user_origem, ...rest } = messa;
-
-      socket.emit("joinRoom", { room: actualRoom[0].id }, messa);
-
+      socket.emit("sendMessage", { room: actualRoom[0].id }, messa);
       await api.post("/message", rest);
     } catch (error) {
       console.log(error);
@@ -65,7 +63,7 @@ export default function Chat(session: any) {
             <React.Fragment key={message.id}>
               <div
                 className={`bg-zinc-600 p-5 rounded-md w-2/6 ${
-                  message.user_origem.name != session.session?.name
+                  message.user_origem.name != session.session?.user.name
                     ? ""
                     : "mt-10 relative left-2/3"
                 }`}>
