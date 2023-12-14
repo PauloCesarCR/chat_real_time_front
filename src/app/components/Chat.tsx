@@ -15,6 +15,7 @@ export default function Chat(session: any) {
       if (!text || !session.session?.id) {
         return;
       }
+
       const messa: PayLoadMessage = {
         id: messages[messages.length - 1].id + 1,
         message: text,
