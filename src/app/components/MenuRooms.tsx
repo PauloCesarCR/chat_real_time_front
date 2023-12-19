@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 import api from "../services/api";
-import { useGlobalContext } from "@/app/Context/store";
+import { useGlobalContext } from "@/app/context/store";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { socket } from "../services/io";
 export default function MenuRooms(session: any) {
   const router = useRouter();
 
@@ -16,6 +17,7 @@ export default function MenuRooms(session: any) {
 
   async function getMessagesByRoomId(room: Room) {
     setactualRoom([room]);
+    socket.emit("joinRoom", { room });
     const { data } = await api.get(`/message/${room.id}`);
     setMessages([...data]);
   }
