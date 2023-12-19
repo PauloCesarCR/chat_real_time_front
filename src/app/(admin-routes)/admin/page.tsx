@@ -1,6 +1,6 @@
 import Chat from "../../components/Chat";
 import MenuRooms from "../../components/MenuRooms";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import { nextAuthOptions } from "@/app/utils/authOptions";
 import { getServerSession } from "next-auth";
 
 export default async function Dashboard() {
