@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import api from "../services/api";
 import { socket } from "@/app/services/io";
 import React from "react";
-import { useGlobalContext } from "@/app/Context/store";
+import { useGlobalContext } from "@/app/context/store";
 
 export default function Chat(session: any) {
   const [text, setText] = useState("");
@@ -17,7 +17,7 @@ export default function Chat(session: any) {
       }
 
       const messa: PayLoadMessage = {
-        id: messages[messages.length - 1].id + 1,
+        id: 1,
         message: text,
         room_id: actualRoom[0].id,
         user_origem: {

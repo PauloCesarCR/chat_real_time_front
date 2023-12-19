@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import api from "../services/api";
-import { useGlobalContext } from "@/app/Context/store";
+import { useGlobalContext } from "@/app/context/store";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { socket } from "../services/io";
